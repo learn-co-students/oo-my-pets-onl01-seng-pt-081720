@@ -1,3 +1,4 @@
+require 'pry'
 class Owner
   attr_reader :name, :species
 
@@ -29,7 +30,13 @@ class Owner
   end
 
   def cats
-    Cat.all.collect {|x| x.owner == self}
+    cats_array = []
+    Cat.all.select do |x| 
+      if x.owner.name == @name
+        cats_array << x
+      end
+      cats_array
+    end
   end
 
 

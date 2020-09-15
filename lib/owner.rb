@@ -30,14 +30,47 @@ class Owner
   end
 
   def cats
-    Cat.all.select {|x|x.owner.name == @name}
+    Cat.all.select {|x|x.owner == self}
   end
 
   def dogs
-    dog_array = []
-    dog_array = Dog.all.select {|x|x.owner.name == @name}
-    dog_array.uniq
-    binding.pry
+    Dog.all.select {|x|x.owner == self}
+  end
+
+  def buy_cat(name)
+    Cat.new(name, self)
+  end
+
+  def buy_dog(name)
+    Dog.new(name, self)
+  end
+
+  def walk_dogs
+    dogs.each do |x|
+      x.mood = "happy"
+    end
+  end
+
+  def feed_cats
+    cats.each do |x|
+      x.mood = "happy"
+    end
+  end
+
+  def sell_pets
+    cats.each do |x|
+      x.mood = "nervous"
+      x.owner = nil
+    end
+
+    dogs.each do |x|
+      x.mood = "nervous"
+      x.owner = nil
+    end
+  end
+
+  def list_pets
+    "I have #{dogs.count} dog(s), and #{cats.count} cat(s)."
   end
 
 end

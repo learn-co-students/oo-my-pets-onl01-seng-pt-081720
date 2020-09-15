@@ -10,7 +10,7 @@ class Owner
     @species = "human"
     @@all << self
     @@count += 1
-    @cats = []
+    
   end
 
   def say_species
@@ -30,16 +30,14 @@ class Owner
   end
 
   def cats
-    cats_array = []
-    Cat.all.select do |x| 
-      if x.owner.name == @name
-        cats_array << x
-      end
-      cats_array
-    end
+    Cat.all.select {|x|x.owner.name == @name}
   end
 
-
-
+  def dogs
+    dog_array = []
+    dog_array = Dog.all.select {|x|x.owner.name == @name}
+    dog_array.uniq
+    binding.pry
+  end
 
 end

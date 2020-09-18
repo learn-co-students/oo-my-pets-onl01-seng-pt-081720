@@ -8,6 +8,7 @@ attr_accessor :owner , :mood
    @name = name 
    @owner = owner 
    @mood = "nervous"
+   @cats = []
    @@all << self 
  end 
  
@@ -16,6 +17,5 @@ def self.all
   @@all 
 end 
 
-  
  
 end

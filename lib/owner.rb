@@ -6,6 +6,7 @@ class Owner
 
   def initialize(name)
     @name = name
+    save
   end
 
   def species
@@ -18,5 +19,17 @@ class Owner
 
   def self.all
     @@all
+  end
+
+  def save
+    @@all << self
+  end
+
+  def self.count
+    @@all.count
+  end
+
+  def self.reset_all
+    @@all.clear()
   end
 end
